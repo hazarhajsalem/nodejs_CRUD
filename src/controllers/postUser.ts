@@ -2,13 +2,20 @@ import pool from "../database";
 import { Request, Response } from "express";
 
 export const postUser = async (req: Request, res: Response) => {
+  const {email,password} = req.body;
+
+  console.log(req.body);
+  
+
   try {
     await pool.query(
-      "INSERT INTO test.saber(nom, email, num_tel,age) VALUES ('saber','mekk@gmail',111,12)"
+      `INSERT INTO public.user(email,psw) VALUES ('${email}','${password}')`
     );
+    
     res.status(200).send("ok");
   } catch (error) {
     console.log(error);
     return res.status(500).json({ error: error });
   }
 };
+//http://localhost:5000/api/v1/docs/#/
