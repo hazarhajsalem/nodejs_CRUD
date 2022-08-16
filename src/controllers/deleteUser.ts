@@ -2,11 +2,11 @@ import pool from "../database";
 import { Request, Response } from "express";
 
 export const deleteUser = async (req: Request, res: Response) => {
-  const { nom } = req.body;
+  const { email } = req.body;
 
   try {
     const result = await pool.query(
-      `DELETE  FROM test.saber WHERE nom='${nom}' returning nom`
+      `DELETE  FROM public.user WHERE email='${email}' returning email`
     );
     res.status(200).json(result);
   } catch (error) {
