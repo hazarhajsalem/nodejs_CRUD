@@ -3,10 +3,6 @@ import { Request, Response } from "express";
 
 export const postUser = async (req: Request, res: Response) => {
   const {email,password} = req.body;
-
-  console.log(req.body);
-  
-
   try {
     await pool.query(
       `INSERT INTO public.user(email,psw) VALUES ('${email}','${password}')`
@@ -18,4 +14,3 @@ export const postUser = async (req: Request, res: Response) => {
     return res.status(500).json({ error: error });
   }
 };
-//http://localhost:5000/api/v1/docs/#/
